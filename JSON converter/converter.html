@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>JSON Format Conversion</h1>
+        <div class="innercont">
+        <div class="inner input">
+            <!-- Take Input from the user-->
+            <input type="text" id="json-string"/>
+            <button type="button" id="convert" onclick="jsonConvert()">Convert to JSON</button>    
+        </div>
+        <div class="inner output">
+            <code><div class="left" id="json-output"></div></code>
+            <div class="right"><i id="myIcon" class="fa-regular fa-copy" onclick="myFunction()"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function jsonConvert() {
+            const input = document.getElementById("json-string");
+            document.getElementById("json-output").innerHTML = JSON.stringify({input: input.value});
+        }
+    </script>
+    <script>
+        // Get a reference to the icon element
+        //var icon = document.getElementById("myIcon");
+
+        // Attach an event listener to listen for click events
+        //icon.addEventListener("click", myFunction);
+
+        function myFunction() {
+            // get the container
+            const element = document.querySelector('#json-output');
+            // Create a fake `textarea` and set the contents to the text
+            // you want to copy
+            const storage = document.createElement('textarea');
+            storage.value = element.innerHTML;
+            element.appendChild(storage);
+
+            // Copy the text in the fake `textarea` and remove the `textarea`
+            storage.select();
+            storage.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            element.removeChild(storage);
+        }
+    </script>
+</body>
+</html>
